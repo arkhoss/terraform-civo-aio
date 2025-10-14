@@ -26,7 +26,7 @@ output "cluster_kubeconfig" {
 
 output "reserved_ip" {
   value       = civo_reserved_ip.this[0].ip
-  description = "The KubeConfig for the Kubernetes cluster"
+  description = "A reserved IP address to be used by an ingress controller or similar"
 }
 
 

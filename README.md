@@ -71,4 +71,4 @@ No modules.
 | <a name="output_database_info"></a> [database_info](#output_database_info) | Details of all created Civo databases |
 | <a name="output_firewall_id"></a> [firewall_id](#output_firewall_id) | firewall id |
 | <a name="output_network_id"></a> [network_id](#output_network_id) | network id |
-| <a name="output_reserved_ip"></a> [reserved_ip](#output_reserved_ip) | The KubeConfig for the Kubernetes cluster |
+| <a name="output_reserved_ip"></a> [reserved_ip](#output_reserved_ip) | A reserved IP address to be used by an ingress controller or similar |
