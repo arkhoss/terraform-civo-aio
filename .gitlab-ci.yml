@@ -1,0 +1,20 @@
+default:
+   image:
+     name: "alpine:3.19"
+
+stages:
+  - publish
+
+publish:
+  variables:
+    SEMANTIC_RELEASE_VERSION: "20.1.0"
+  stage: publish
+  before_script:
+    - apk add --update git nodejs npm
+    - npm install -g semantic-release@$SEMANTIC_RELEASE_VERSION @semantic-release/gitlab @semantic-release/changelog @semantic-release/commit-analyzer @semantic-release/release-notes-generator @semantic-release/git @semantic-release/gitlab-config
+  script:
+    - semantic-release
+  rules:
+    - if: $CI_COMMIT_MESSAGE =~ /RELEASE:/
+      when: never
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH

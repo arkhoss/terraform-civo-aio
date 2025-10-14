@@ -1,0 +1,22 @@
+ci: true
+branches:
+  - main
+  - master
+tagFormat: "v${version}"
+verifyConditions:
+  - "@semantic-release/changelog"
+  - "@semantic-release/git"
+  - "@semantic-release/gitlab"
+analyzeCommits:
+  - path: "@semantic-release/commit-analyzer"
+prepare:
+  - path: "@semantic-release/changelog"
+    changelogFile: CHANGELOG.md
+  - path: "@semantic-release/git"
+    message: "RELEASE: ${nextRelease.version}"
+    assets: ["./CHANGELOG.md"]
+publish:
+  - "@semantic-release/gitlab"
+success: false
+fail: false
+npmPublish: false

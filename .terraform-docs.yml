@@ -1,0 +1,44 @@
+version: ">= 0.10.1"
+
+formatter: "markdown table"
+
+footer-from: ""
+header-from: "./main.tf"
+
+sections:
+  hide: []
+  show: []
+
+  hide-all: false # deprecated in v0.13.0, removed in v0.15.0
+  show-all: true  # deprecated in v0.13.0, removed in v0.15.0
+
+content: ""
+
+output:
+  file: "./README.md"
+  mode: replace
+  template: |-
+    ## About
+    This base module creates all resources for CIVO terraform provider.
+    
+    {{ .Content }}
+    
+output-values:
+  enabled: false
+  from: ""
+
+sort:
+  enabled: true
+  by: name
+
+settings:
+  anchor: true
+  color: true
+  default: true
+  description: false
+  escape: false
+  html: false
+  indent: 2
+  required: true
+  sensitive: true
+  type: true

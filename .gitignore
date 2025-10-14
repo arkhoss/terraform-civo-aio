@@ -1,0 +1,134 @@
+# -- Chef
+.autotest
+coverage
+.DS_Store
+pkg/*
+tags
+*/tags
+*~
+.chef
+results
+*.swp
+
+# You should check in your Gemfile.lock in applications, and not in gems
+external_tests/*.lock
+/Gemfile.local
+
+# ignore some common Bundler 'binstubs' directory names
+# http://gembundler.com/man/bundle-exec.1.html
+b/
+binstubs/
+.bundle
+# RVM and RBENV ruby version files
+.rbenv-version
+.rvmrc
+.ruby-version
+.ruby-gemset
+
+# IDE files
+.project
+.idea
+
+# Documentation
+_site/*
+.yardoc/
+doc/
+
+# Test Kitchen
+.kitchen/
+
+# Vagrant
+Vagrantfile
+.vagrant/
+
+# Kitchen Tests lock files and chef data
+kitchen-tests/nodes/*
+kitchen-tests/Gemfile.lock
+kitchen-tests/Berksfile.lock
+
+# Temporary files present during spec runs
+spec/data/test-dir
+spec/data/nodes
+spec/data/chef_guid
+/config/
+
+vendor/
+kitchen-tests/vendor
+
+# Visual Studio Code files
+.vscode
+
+# ignore nodes generated during local testing
+nodes/
+
+# chef-config
+chef-config/.bundle
+chef-config/Gemfile.lock
+chef-config/pkg
+
+# chef-bin
+chef-bin/.bundle
+chef-bin/Gemfile.lock
+chef-bin/pkg
+
+# chef-utils
+chef-utils/.bundle
+chef-utils/Gemfile.lock
+chef-utils/pkg
+
+# auto generated docs from the docs.rb rake task
+docs_site
+
+# Rendered Templates
+ext/win32-eventlog/chef-log.man
+distro/powershell/chef/chef.psm1
+
+# tool logs
+ext/win32-eventlog/mkmf.log
+
+# ignore byebug command history file.
+.byebug_history
+
+# -- Terraform
+# Local .terraform directories
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# Crash log files
+crash.log
+
+# Ignore any .tfvars files that are generated automatically for each Terraform run. Most
+# .tfvars files are managed as part of configuration and so should be included in
+# version control.
+#
+# example.tfvars
+
+# Ignore override files as they are usually used to override resources locally and so
+# are not checked in
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Include override files you do wish to add to version control using negated pattern
+#
+# !example_override.tf
+
+# Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
+# example: *tfplan*
+
+# Ignore CLI configuration files
+.terraformrc
+terraform.rc
+# Ignore terraform lock files
+.terraform.lock.hcl
+
+# -- Kitchen
+*~
+*.orig
+*.rej
+Gemfile.lock
+.kitchen
