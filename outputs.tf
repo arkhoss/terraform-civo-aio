@@ -32,6 +32,7 @@ output "reserved_ip" {
 
 output "database_info" {
   description = "Details of all created Civo databases"
+  sensitive   = true
   value = var.create_databases && length(civo_database.this) > 0 ? {
     for name, db in civo_database.this :
     name => {
