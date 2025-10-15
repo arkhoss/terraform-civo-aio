@@ -92,6 +92,7 @@ resource "civo_kubernetes_node_pool" "pool" {
 }
 
 resource "local_file" "kubeconfig" {
+  count    = var.create_local_kubeconfig ? 1 : 0
   filename = "/tmp/${civo_kubernetes_cluster.this[0].name}-kubeconfig"
   content  = civo_kubernetes_cluster.this[0].kubeconfig
 }

@@ -41,6 +41,7 @@ No modules.
 | <a name="input_create_cluster"></a> [create_cluster](#input_create_cluster) | crate or not the kubernetes cluster in case you only need network and/or firewall | `bool` | `true` | no |
 | <a name="input_create_databases"></a> [create_databases](#input_create_databases) | Wheter or not create a reserved ip address | `bool` | `false` | no |
 | <a name="input_create_firewall"></a> [create_firewall](#input_create_firewall) | create or not a firewall | `bool` | `true` | no |
+| <a name="input_create_local_kubeconfig"></a> [create_local_kubeconfig](#input_create_local_kubeconfig) | Whether create or not a local kubeconfig file on /tmp folder | `bool` | `false` | no |
 | <a name="input_create_network"></a> [create_network](#input_create_network) | create or not a new network | `bool` | `true` | no |
 | <a name="input_create_node_pools"></a> [create_node_pools](#input_create_node_pools) | Whether to create node pools | `bool` | `false` | no |
 | <a name="input_create_reserved_ip"></a> [create_reserved_ip](#input_create_reserved_ip) | Wheter or not create a reserved ip address | `bool` | `false` | no |

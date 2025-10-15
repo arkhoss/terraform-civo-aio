@@ -136,6 +136,12 @@ variable "write_kubeconfig" {
   default     = false
 }
 
+variable "create_local_kubeconfig" {
+  type        = bool
+  description = "Whether create or not a local kubeconfig file on /tmp folder"
+  default     = false
+}
+
 variable "default_pool_size" {
   type        = string
   description = "Size of the nodes in the default nodepool."
