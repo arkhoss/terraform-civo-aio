@@ -1,3 +1,10 @@
+# [1.3.0](https://gitlab.com/arkhoss/terraform-civo-aio/compare/v1.2.0...v1.3.0) (2025-10-15)
+
+
+### Features
+
+* **iac:** sensitive attribute for database info output ([ee0976d](https://gitlab.com/arkhoss/terraform-civo-aio/commit/ee0976dd8eaf8303ac2578cad46699863f849c39))
+
 # [1.2.0](https://gitlab.com/arkhoss/terraform-civo-aio/compare/v1.1.0...v1.2.0) (2025-10-15)
 
 
