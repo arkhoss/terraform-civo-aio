@@ -1,3 +1,11 @@
+# [1.4.0](https://gitlab.com/arkhoss/terraform-civo-aio/compare/v1.3.0...v1.4.0) (2025-10-30)
+
+
+### Features
+
+* **iac:** added support to create object store and use of credential name ([94f6e05](https://gitlab.com/arkhoss/terraform-civo-aio/commit/94f6e05fccf7c76df53ec3cec7d96106930bbd0d))
+* **iac:** updated outputs to have create conditionals ([3eb96bf](https://gitlab.com/arkhoss/terraform-civo-aio/commit/3eb96bf0b94e0674da3f81893c4561b74644a2d4))
+
 # [1.3.0](https://gitlab.com/arkhoss/terraform-civo-aio/compare/v1.2.0...v1.3.0) (2025-10-15)
 
 
