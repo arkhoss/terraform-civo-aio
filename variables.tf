@@ -220,3 +220,26 @@ variable "databases" {
     }
   ]
 }
+
+variable "create_object_stores" {
+  type        = bool
+  description = "Wheter or not create object_stores"
+  default     = false
+}
+
+variable "object_stores" {
+  description = "Set of object_stores configurations, for store_credential_name the credential must exist with that name in civo to be used as access key id of an object store"
+  type = set(object({
+    name            = string
+    size_gb         = optional(string)
+    region          = optional(string)
+    credential_name = optional(string)
+  }))
+  default = [
+    {
+      name    = "mystore"
+      size_gb = "500"
+      region  = "nyc1"
+    }
+  ]
+}

@@ -28,8 +28,10 @@ No modules.
 | [civo_kubernetes_cluster.this](https://registry.terraform.io/providers/civo/civo/latest/docs/resources/kubernetes_cluster) | resource |
 | [civo_kubernetes_node_pool.pool](https://registry.terraform.io/providers/civo/civo/latest/docs/resources/kubernetes_node_pool) | resource |
 | [civo_network.this](https://registry.terraform.io/providers/civo/civo/latest/docs/resources/network) | resource |
+| [civo_object_store.this](https://registry.terraform.io/providers/civo/civo/latest/docs/resources/object_store) | resource |
 | [civo_reserved_ip.this](https://registry.terraform.io/providers/civo/civo/latest/docs/resources/reserved_ip) | resource |
 | [local_file.kubeconfig](https://registry.terraform.io/providers/hashicorp/local/latest/docs/resources/file) | resource |
+| [civo_object_store_credential.this](https://registry.terraform.io/providers/civo/civo/latest/docs/data-sources/object_store_credential) | data source |
 
 ## Inputs
 
@@ -44,6 +46,7 @@ No modules.
 | <a name="input_create_local_kubeconfig"></a> [create_local_kubeconfig](#input_create_local_kubeconfig) | Whether create or not a local kubeconfig file on /tmp folder | `bool` | `false` | no |
 | <a name="input_create_network"></a> [create_network](#input_create_network) | create or not a new network | `bool` | `true` | no |
 | <a name="input_create_node_pools"></a> [create_node_pools](#input_create_node_pools) | Whether to create node pools | `bool` | `false` | no |
+| <a name="input_create_object_stores"></a> [create_object_stores](#input_create_object_stores) | Wheter or not create object_stores | `bool` | `false` | no |
 | <a name="input_create_reserved_ip"></a> [create_reserved_ip](#input_create_reserved_ip) | Wheter or not create a reserved ip address | `bool` | `false` | no |
 | <a name="input_databases"></a> [databases](#input_databases) | Set of database configurations | ```set(object({ name = string size = string nodes = number engine = string version = string }))``` | ```[ { "engine": "mysql", "name": "custom_database", "nodes": 2, "size": "g3.k3s.small", "version": "8.0" }, { "engine": "postgresql", "name": "analytics_db", "nodes": 3, "size": "g3.k3s.medium", "version": "14" } ]``` | no |
 | <a name="input_default_node_count"></a> [default_node_count](#input_default_node_count) | Number of nodes in the nodepool | `number` | `3` | no |
@@ -57,6 +60,7 @@ No modules.
 | <a name="input_network_id"></a> [network_id](#input_network_id) | Network id if already exists | `string` | `""` | no |
 | <a name="input_network_name"></a> [network_name](#input_network_name) | name for the network | `string` | `""` | no |
 | <a name="input_node_pools"></a> [node_pools](#input_node_pools) | Definition of Kubernetes node pools to create | ```map(object({ size = string node_count = number labels = optional(map(string)) taints = optional(list(object({ key = string value = string effect = string }))) }))``` | `{}` | no |
+| <a name="input_object_stores"></a> [object_stores](#input_object_stores) | Set of object_stores configurations, for store_credential_name the credential must exist with that name in civo to be used as access key id of an object store | ```set(object({ name = string size_gb = optional(string) region = optional(string) credential_name = optional(string) }))``` | ```[ { "name": "mystore", "region": "nyc1", "size_gb": "500" } ]``` | no |
 | <a name="input_project_name"></a> [project_name](#input_project_name) | Name of the project to be used as prefix for all resources | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input_region) | The region of the resources | `string` | `"nyc1"` | no |
 | <a name="input_write_kubeconfig"></a> [write_kubeconfig](#input_write_kubeconfig) | (false by default) when set to true, kubeconfig is saved to the terraform state file | `bool` | `false` | no |

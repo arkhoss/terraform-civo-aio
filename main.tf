@@ -115,3 +115,23 @@ resource "civo_database" "this" {
   firewall_id = length(var.firewall_id) == 0 ? civo_firewall.this[0].id : var.firewall_id
 }
 
+data "civo_object_store_credential" "this" {
+  for_each = var.create_object_stores ? {
+    for object_store in var.object_stores :
+    object_store.name => object_store
+    if object_store.credential_name != null && object_store.credential_name != ""
+  } : {}
+
+  name = each.value.credential_name
+}
+
+resource "civo_object_store" "this" {
+  for_each    = var.create_object_stores ? { for object_store in var.object_stores : object_store.name => object_store } : {}
+  name        = each.value.name
+  max_size_gb = each.value.size_gb
+  region      = each.value.region == null ? var.region : each.value.region
+  access_key_id = try(
+    data.civo_object_store_credential.this[each.value.name].access_key_id,
+    null
+  )
+}

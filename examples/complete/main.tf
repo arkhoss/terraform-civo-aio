@@ -90,4 +90,18 @@ module "this" {
       version = "8.0"
     }
   ]
+
+  create_object_stores = true
+
+  object_stores = [
+    {
+      name    = "civo-some-unique-object-store-name-888"
+      size_gb = "500"
+    },
+    {
+      name            = "civo-some-unique-object-store-name-888"
+      size_gb         = "600"
+      credential_name = "civo-some-unique-object-store-credential-name"
+    }
+  ]
 }
