@@ -57,8 +57,16 @@ resource "civo_kubernetes_cluster" "this" {
     node_count = var.default_node_count
     #TODO: (dcaballero) civo provider labels lifecycle seems broken, it walys report back changes even then the label is already applied, needs to create a civo issue
     labels = var.default_pool_labels
-  }
 
+    dynamic "taint" {
+      for_each = var.default_pool_taints
+      content {
+        key    = taint.value.key
+        value  = taint.value.value
+        effect = taint.value.effect
+      }
+    }
+  }
   #TODO: (dcaballero) needs to setup autoscaler capability for the module
   # This allows us to make use of cluster autoscaler.
   # If you don't plan to use cluster autoscaler you can remove this `lifecycle` block.

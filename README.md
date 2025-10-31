@@ -52,6 +52,7 @@ No modules.
 | <a name="input_default_node_count"></a> [default_node_count](#input_default_node_count) | Number of nodes in the nodepool | `number` | `3` | no |
 | <a name="input_default_pool_labels"></a> [default_pool_labels](#input_default_pool_labels) | Map of string to identify resources | `map(string)` | `{}` | no |
 | <a name="input_default_pool_size"></a> [default_pool_size](#input_default_pool_size) | Size of the nodes in the default nodepool. | `string` | `"g4s.kube.xsmall"` | no |
+| <a name="input_default_pool_taints"></a> [default_pool_taints](#input_default_pool_taints) | taints for default pool nodes | ```list(object({ key = string value = string effect = string }))``` | `[]` | no |
 | <a name="input_firewall_create_default_rules"></a> [firewall_create_default_rules](#input_firewall_create_default_rules) | Whether create or not default firewall rules, needs to be false when custom rules are needed | `bool` | `true` | no |
 | <a name="input_firewall_id"></a> [firewall_id](#input_firewall_id) | Network id if already exists | `string` | `""` | no |
 | <a name="input_firewall_name"></a> [firewall_name](#input_firewall_name) | name for the firewall | `string` | `""` | no |

@@ -160,6 +160,16 @@ variable "default_pool_labels" {
   description = "Map of string to identify resources"
 }
 
+variable "default_pool_taints" {
+  type = list(object({
+    key    = string
+    value  = string
+    effect = string
+  }))
+  default     = []
+  description = "taints for default pool nodes"
+}
+
 variable "create_node_pools" {
   description = "Whether to create node pools"
   type        = bool
