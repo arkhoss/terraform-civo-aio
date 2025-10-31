@@ -1,3 +1,11 @@
+# [1.5.0](https://gitlab.com/arkhoss/terraform-civo-aio/compare/v1.4.0...v1.5.0) (2025-10-31)
+
+
+### Features
+
+* **iac:** added taints support for default node pool ([c3ec139](https://gitlab.com/arkhoss/terraform-civo-aio/commit/c3ec139febe1916fe06d2795b070a1aea9ccf47c))
+* **iac:** fixed null return for outputs when conditions are not met ([863ee16](https://gitlab.com/arkhoss/terraform-civo-aio/commit/863ee168aabb65c854624c5a1369bce6506ae89f))
+
 # [1.4.0](https://gitlab.com/arkhoss/terraform-civo-aio/compare/v1.3.0...v1.4.0) (2025-10-30)
 
 
