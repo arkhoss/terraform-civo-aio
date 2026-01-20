@@ -275,7 +275,7 @@ variable "create_instances_reserved_ips" {
 }
 
 variable "instances" {
-  description = "Set of instances configurations"
+  description = "Set of instances configurations, sshkey_name if not specified module will create it as default-hostname, sshkey_path if not specified it will use default path ~/.ssh/id_rsa.pub, if network id and/or firewall_id are not specified the module will try to use default network and default firewall ids from the module, this will throw and exception if create_firewall and/or create_network are set to false"
   type = set(object({
     hostname       = string
     tags           = optional(list(string))
