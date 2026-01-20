@@ -17,13 +17,13 @@ variable "region" {
 
 variable "network_id" {
   type        = string
-  description = "Network id if already exists"
+  description = "Network id if already exists, to override network created by module, it is only for kubernetes cluster resource, for override network on databases and/or instances use their own object inner variable"
   default     = ""
 }
 
 variable "firewall_id" {
   type        = string
-  description = "Network id if already exists"
+  description = "Network id if already exists, to override firewall created by module, it is only for kubernetes cluster resource for override firewall on databases and/or instances use their own object inner variable"
   default     = ""
 }
 
@@ -63,14 +63,14 @@ variable "firewall_rules" {
     ingress = list(object({
       label      = string
       protocol   = string
-      port_range = string
+      port_range = optional(string)
       cidr       = list(string)
       action     = string
     }))
     egress = list(object({
       label      = string
       protocol   = string
-      port_range = string
+      port_range = optional(string)
       cidr       = list(string)
       action     = string
     }))
@@ -207,11 +207,13 @@ variable "create_databases" {
 variable "databases" {
   description = "Set of database configurations"
   type = set(object({
-    name    = string
-    size    = string
-    nodes   = number
-    engine  = string
-    version = string
+    name        = string
+    size        = string
+    nodes       = number
+    engine      = string
+    version     = string
+    network_id  = optional(string)
+    firewall_id = optional(string)
   }))
   default = [
     {
@@ -253,3 +255,51 @@ variable "object_stores" {
     }
   ]
 }
+
+variable "create_instances" {
+  type        = bool
+  description = "Whether or not create instances"
+  default     = false
+}
+
+variable "create_sshkey" {
+  type        = bool
+  description = "Whether or not create sshkeys"
+  default     = false
+}
+
+variable "create_instances_reserved_ips" {
+  type        = bool
+  description = "Whether or not create reserved public IPs for instances"
+  default     = false
+}
+
+variable "instances" {
+  description = "Set of instances configurations"
+  type = set(object({
+    hostname       = string
+    tags           = optional(list(string))
+    notes          = optional(string)
+    size           = string
+    disk_image     = string
+    initial_user   = optional(string)
+    volume_type    = optional(string)
+    region         = optional(string)
+    write_password = optional(bool)
+    sshkey_name    = optional(string)
+    sshkey_path    = optional(string)
+    network_id     = optional(string)
+    firewall_id    = optional(string)
+    script_path    = optional(string)
+  }))
+  default = [
+    {
+      hostname   = "my-civo-instance"
+      tags       = ["nonprod", "my-instance"]
+      notes      = "this is an instance"
+      size       = "g4s.medium"
+      disk_image = "ubuntu-noble"
+    }
+  ]
+}
+
