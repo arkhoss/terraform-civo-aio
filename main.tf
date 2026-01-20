@@ -111,7 +111,6 @@ resource "civo_reserved_ip" "this" {
 }
 
 resource "civo_database" "this" {
-  #  for_each = var.create_databases ? var.databases : []
   for_each = var.create_databases ? { for db in var.databases : db.name => db } : {}
   name     = each.value.name
   size     = each.value.size
@@ -119,8 +118,8 @@ resource "civo_database" "this" {
   engine   = each.value.engine
   version  = each.value.version
 
-  network_id  = length(var.network_id) == 0 ? civo_network.this[0].id : var.network_id
-  firewall_id = length(var.firewall_id) == 0 ? civo_firewall.this[0].id : var.firewall_id
+  network_id  = each.value.network_id == null ? civo_network.this[0].id : each.value.network_id
+  firewall_id = each.value.firewall_id == null ? civo_firewall.this[0].id : each.value.firewall_id
 }
 
 data "civo_object_store_credential" "this" {
@@ -143,3 +142,48 @@ resource "civo_object_store" "this" {
     null
   )
 }
+
+
+data "civo_disk_image" "this" {
+  for_each = var.create_instances ? { for ins in var.instances : ins.hostname => ins } : {}
+  filter {
+    key    = "name"
+    values = [each.value.disk_image]
+  }
+}
+
+resource "civo_ssh_key" "this" {
+  for_each   = var.create_instances && var.create_sshkey ? { for ins in var.instances : ins.hostname => ins } : {}
+  name       = each.value.sshkey_name != null ? each.value.sshkey_name : "default-${each.value.hostname}"
+  public_key = each.value.sshkey_path != null ? file("${each.value.sshkey_path}") : file("~/.ssh/id_rsa.pub")
+}
+
+resource "civo_reserved_ip" "this_instances" {
+  for_each = var.create_instances && var.create_instances_reserved_ips ? { for ins in var.instances : ins.hostname => ins } : {}
+  name     = each.value.hostname
+}
+
+resource "civo_instance" "this" {
+  for_each       = var.create_instances ? { for ins in var.instances : ins.hostname => ins } : {}
+  hostname       = each.value.hostname
+  size           = each.value.size
+  disk_image     = element(data.civo_disk_image.this[each.value.hostname].diskimages, 0).id
+  notes          = each.value.notes == "" ? "" : each.value.notes
+  tags           = each.value.tags == [] ? [] : each.value.tags
+  initial_user   = each.value.initial_user == "" ? "civo" : each.value.initial_user
+  region         = each.value.region == null ? var.region : each.value.region
+  volume_type    = each.value.volume_type == null ? "standard" : each.value.volume_type
+  sshkey_id      = ((each.value.sshkey_path != "") && (var.create_sshkey)) ? civo_ssh_key.this[each.value.hostname].id : null
+  write_password = each.value.write_password == null ? false : each.value.write_password
+  script         = each.value.script_path != null ? file("${each.value.script_path}") : null
+
+  network_id  = each.value.network_id == null ? civo_network.this[0].id : each.value.network_id
+  firewall_id = each.value.firewall_id == null ? civo_firewall.this[0].id : each.value.firewall_id
+}
+
+resource "civo_instance_reserved_ip_assignment" "this" {
+  for_each       = var.create_instances && var.create_instances_reserved_ips ? { for ins in var.instances : ins.hostname => ins } : {}
+  instance_id    = civo_instance.this[each.value.hostname].id
+  reserved_ip_id = civo_reserved_ip.this_instances[each.value.hostname].id
+}
+
