@@ -1,3 +1,12 @@
+# [1.6.0](https://gitlab.com/arkhoss/terraform-civo-aio/compare/v1.5.0...v1.6.0) (2026-01-20)
+
+
+### Features
+
+* **instances:** added example for instances ([047bc44](https://gitlab.com/arkhoss/terraform-civo-aio/commit/047bc444f94497392f5ef342654152cbb9095760))
+* **instances:** added example for instances ([7c636e1](https://gitlab.com/arkhoss/terraform-civo-aio/commit/7c636e129180783484fea55a196aa3b6fb7833d0))
+* **instances:** support for civo instances and added default ssh in case no name or path specified ([3063aa9](https://gitlab.com/arkhoss/terraform-civo-aio/commit/3063aa91f3aa414b304f905c3c71e2f0e83d6421))
+
 # [1.5.0](https://gitlab.com/arkhoss/terraform-civo-aio/compare/v1.4.0...v1.5.0) (2025-10-31)
 
 
