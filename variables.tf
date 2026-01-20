@@ -58,7 +58,7 @@ variable "firewall_create_default_rules" {
 }
 
 variable "firewall_rules" {
-  description = "Ingress and egress rules for the firewall"
+  description = "Ingress and egress rules for the firewall, DO NOT specify port_range when the proticol is set to ICMP"
   type = object({
     ingress = list(object({
       label      = string
